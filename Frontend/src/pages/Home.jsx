@@ -8,7 +8,7 @@ import FullScreenDisasterSimulation from '../components/FullScreenDisasterSimula
 import { CloudRain, Zap, Tornado, Waves, ArrowRight, Bot, Play } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const API_KEY = "fdcb81093bd238b09066a02ec7c13bed";
+const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY || "fdcb81093bd238b09066a02ec7c13bed";
 
 export default function Home() {
   const { userLocation } = useLocation();

@@ -19,11 +19,9 @@ import {
   LogOut
 } from 'lucide-react';
 import { useLocation } from '../contexts/LocationContext';
-import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Login() {
   const { userLocation, loginUser, logoutUser } = useLocation();
-  const { t } = useLanguage();
   const navigate = useNavigate();
 
   const [activeTab, setActiveTab] = useState('signin'); // 'signin' or 'signup'

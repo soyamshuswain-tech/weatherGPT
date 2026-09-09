@@ -4,7 +4,7 @@ import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'rec
 import { useLocation } from '../contexts/LocationContext'; // Keep your location context
 
 // Re-using your API key
-const API_KEY = "fdcb81093bd238b09066a02ec7c13bed";
+const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY || "fdcb81093bd238b09066a02ec7c13bed";
 
 export default function Forecast() {
   const { userLocation } = useLocation();

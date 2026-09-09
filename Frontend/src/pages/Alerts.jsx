@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useAlert } from '../contexts/AlertContext';
 import { getAlerts } from '../services/alertService';
-import { BellRing, ShieldAlert, Settings, MapPin, Activity, Filter, Info, CloudRain, Waves, Tornado } from 'lucide-react';
+import { BellRing, ShieldAlert, Settings, MapPin, Activity, Filter, Info, CloudRain, Waves } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Alerts() {

@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { User, Bell, MapPin, Shield, Globe, ShieldAlert, LogIn } from 'lucide-react';
+import { Bell, MapPin, Globe, LogIn } from 'lucide-react';
 import { useLocation } from '../contexts/LocationContext';
-import { useLanguage } from '../contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function Profile() {
   const { userLocation } = useLocation();
-  const { language, setLanguage, t } = useLanguage();
   const navigate = useNavigate();
 
   return (

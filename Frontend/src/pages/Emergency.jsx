@@ -1,17 +1,15 @@
 import { ShieldAlert, Home, PhoneCall, Route, Volume2, AlertTriangle, Hospital, MapPin } from 'lucide-react';
-import { useLanguage } from '../contexts/LanguageContext';
 import { useAlert } from '../contexts/AlertContext';
 import { useLocation } from '../contexts/LocationContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function Emergency() {
-  const { t } = useLanguage();
   const { activateAlertLayer } = useAlert();
   const { userLocation } = useLocation();
   const navigate = useNavigate();
 
   const handleAction = (type) => {
-    activateAlertLayer('flood'); 
+    activateAlertLayer(type || 'flood'); 
     navigate('/map');
   };
 

@@ -18,7 +18,7 @@ export default function AnimatedWeatherLayer({ type, center, radius, intensity =
   if (!active || !bounds) return null;
 
   // Generate a unique ID for the clip path so multiple layers don't conflict
-  const clipId = `circle-mask-${type}-${center[0]}-${center[1]}`.replace(/[\.\-]/g, '');
+  const clipId = `circle-mask-${type}-${center[0]}-${center[1]}`.replace(/[.-]/g, '');
 
   return (
     <SVGOverlay bounds={bounds}>

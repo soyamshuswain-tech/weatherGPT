@@ -5,18 +5,33 @@ __pycache__/
 
 # Environment variables
 .env
+.env.*
+!.env.example
 Frontend/.env
+Frontend/.env.*
+!Frontend/.env.example
 Backend/.env
+Backend/.env.*
 
-# Node
+# Node & Build Outputs
 node_modules/
+dist/
+dist-ssr/
 Frontend/node_modules/
 Frontend/dist/
+Frontend/dist-ssr/
+*.local
 
 # IDE
 .vscode/
+!.vscode/extensions.json
 .idea/
 
 # OS
 Thumbs.db
 .DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

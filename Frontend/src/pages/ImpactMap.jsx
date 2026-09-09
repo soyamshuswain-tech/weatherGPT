@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Polyline, Circle, Popup, useMap } from 'react-leaflet';
-import L from 'leaflet';
 import { useLocation } from '../contexts/LocationContext';
 import { useAlert } from '../contexts/AlertContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { getMapData } from '../services/mapService';
-import { Layers, CloudRain, Zap, Tornado, Waves, ShieldAlert, Activity, MapPin } from 'lucide-react';
+import { Layers, CloudRain, Zap, Tornado, Waves, Activity, MapPin } from 'lucide-react';
 import AnimatedWeatherLayer from '../components/map/AnimatedWeatherLayer';
 import SafetyAvatar from '../components/map/SafetyAvatar';
 import 'leaflet/dist/leaflet.css';
