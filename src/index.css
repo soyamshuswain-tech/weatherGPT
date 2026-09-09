@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+@theme {
+  /* Logo Deep Navy Theme */
+  --color-navy-900: #0B192C; /* Deep Navy Background */
+  --color-navy-800: #112240; /* Surface */
+  --color-navy-700: #1A365D; /* Elevated Surface */
+  --color-navy-600: #234E82; /* Hover Surface */
+  
+  /* Logo Cyan/Azure Accents */
+  --color-accent-blue: #00B4D8; /* Vibrant Cyan */
+  --color-accent-blue-hover: #0077B6; /* Deep Azure Hover */
+  
+  --color-risk-low: #10B981;      
+  --color-risk-watch: #F59E0B;    
+  --color-risk-high: #F97316;     
+  --color-risk-critical: #EF4444; 
+
+  --color-glass-bg: rgba(17, 28, 68, 0.7);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  
+  --color-text-primary: #FFFFFF;
+  --color-text-muted: #94A3B8;
+  --color-text-inverse: #0B1437;
+
+  /* Overriding white/gray for light peach theme to ensure readability */
+  --color-white: #FFFFFF;
+  --color-gray-100: #F1F5F9;
+  --color-gray-200: #E2E8F0;
+  --color-gray-300: #CBD5E1;
+  --color-gray-400: #94A3B8;
+  --color-gray-500: #64748B;
+}
+
+@layer base {
+  body {
+    @apply bg-navy-900 font-sans antialiased;
+    color: var(--color-text-primary);
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(91, 141, 239, 0.03), transparent 30%),
+      radial-gradient(circle at 85% 30%, rgba(91, 141, 239, 0.03), transparent 30%);
+    background-attachment: fixed;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  /* Premium Panel & Card 3D utilities */
+  .glass-panel {
+    @apply bg-navy-800 rounded-2xl shadow-lg;
+    border: none !important;
+  }
+  
+  .glass-card {
+    @apply bg-navy-800 rounded-2xl shadow-lg transition-all duration-400;
+    border: none !important;
+    transform-style: preserve-3d;
+  }
+  
+  .glass-card:hover {
+    @apply bg-navy-700;
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5), 0 10px 20px -5px rgba(0, 180, 216, 0.15);
+  }
+
+  .card-3d {
+    background: rgba(17, 34, 64, 0.9);
+    backdrop-filter: blur(16px);
+    border: none !important;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, background 0.3s ease;
+    transform-style: preserve-3d;
+  }
+
+  .card-3d:hover {
+    transform: translateY(-8px) rotateX(4deg) rotateY(-2deg) scale(1.02);
+    box-shadow: 0 25px 35px -10px rgba(0, 180, 216, 0.25), 0 15px 20px -5px rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-navy-900;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-navy-700 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-navy-800;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .custom-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .custom-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
+
+/* Weather Animations */
+@keyframes fall {
+  0% { transform: translateY(-100vh) rotate(15deg); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(100vh) rotate(15deg); opacity: 0; }
+}
+
+.rain-drop {
+  position: absolute;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(150,200,255,0.8));
+  animation: fall linear infinite;
+}
+
+@keyframes flash {
+  0%, 90%, 94%, 98%, 100% { opacity: 0; }
+  92%, 96% { opacity: 0.8; }
+}
+
+.lightning-flash {
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  animation: flash 5s infinite;
+  z-index: 999;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  to { transform: rotate(360deg) scale(1); }
+}
+
+.cyclone-spin {
+  animation: spin-slow 8s linear infinite;
+}
+
+@keyframes wave {
+  0% { transform: translateX(0) translateZ(0) scaleY(1); }
+  50% { transform: translateX(-25%) translateZ(0) scaleY(0.85); }
+  100% { transform: translateX(-50%) translateZ(0) scaleY(1); }
+}
+
+.flood-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: repeating-radial-gradient(ellipse at bottom, rgba(59,130,246,0.3) 0%, rgba(59,130,246,0.1) 50%, transparent 100%);
+  opacity: 0.5;
+  animation: wave 10s infinite linear;
+}
+
+/* Dark mode map tiles filter (applied to standard OSM tiles) */
+.map-tiles-dark .leaflet-tile-pane,
+.map-tiles-dark .leaflet-control-zoom-in,
+.map-tiles-dark .leaflet-control-zoom-out,
+.map-tiles-dark .leaflet-control-attribution {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}

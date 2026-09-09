@@ -1,0 +1,164 @@
+/* src/styles/weatherBackground.css */
+
+.weather-bg-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.weather-bg-base {
+  position: absolute;
+  inset: 0;
+  transition: background 1.5s ease-in-out;
+}
+
+/* Sunny */
+.bg-sunny {
+  background: linear-gradient(180deg, #4da4ff 0%, #82c3ff 50%, #bde0ff 100%);
+}
+
+.sun-flare {
+  position: absolute;
+  top: 10%;
+  right: 15%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,248,180,0.8) 30%, rgba(255,230,100,0) 70%);
+  border-radius: 50%;
+  filter: blur(10px);
+  animation: pulse-flare 8s infinite alternate ease-in-out;
+}
+
+@keyframes pulse-flare {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.8; }
+  100% { transform: scale(1.2) translate(10px, -10px); opacity: 1; }
+}
+
+/* Cloudy */
+.bg-cloudy {
+  background: linear-gradient(180deg, #6c8a9f 0%, #8ca6b8 50%, #b8c8d2 100%);
+}
+
+.bg-overcast {
+  background: linear-gradient(180deg, #4a5c6a 0%, #687985 50%, #8e9a9f 100%);
+}
+
+.cloud-layer {
+  position: absolute;
+  width: 200vw;
+  height: 100vh;
+  top: -20vh;
+  left: -50vw;
+  background-image: 
+    radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 40%),
+    radial-gradient(ellipse at 70% 60%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 40% 80%, rgba(255, 255, 255, 0.2) 0%, transparent 30%);
+  filter: blur(40px);
+  animation: drift-clouds 60s linear infinite;
+  opacity: 0.8;
+}
+
+.cloud-layer-2 {
+  position: absolute;
+  width: 200vw;
+  height: 100vh;
+  top: -10vh;
+  left: -100vw;
+  background-image: 
+    radial-gradient(ellipse at 20% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 40%, rgba(255, 255, 255, 0.4) 0%, transparent 40%);
+  filter: blur(50px);
+  animation: drift-clouds-slow 80s linear infinite reverse;
+}
+
+@keyframes drift-clouds {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50vw); }
+}
+
+@keyframes drift-clouds-slow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50vw); }
+}
+
+/* Rain & Storm */
+.bg-rainy {
+  background: linear-gradient(180deg, #2b3a4a 0%, #4a5968 50%, #68737a 100%);
+}
+
+.bg-storm {
+  background: linear-gradient(180deg, #1a232b 0%, #2b353d 50%, #3a454d 100%);
+}
+
+.rain-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0 L20 15 M70 20 L70 35 M40 50 L40 65 M90 70 L90 85 M10 80 L10 95' stroke='rgba(255,255,255,0.4)' stroke-width='1' stroke-linecap='round' /%3E%3C/svg%3E");
+  animation: rain-fall 0.8s linear infinite;
+}
+
+@keyframes rain-fall {
+  0% { background-position: 0 0; }
+  100% { background-position: 10px 100px; }
+}
+
+.storm-flash {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0);
+  animation: flash 6s infinite;
+}
+
+@keyframes flash {
+  0%, 94%, 98%, 100% { background: rgba(255, 255, 255, 0); }
+  95% { background: rgba(255, 255, 255, 0.4); }
+  96% { background: rgba(255, 255, 255, 0); }
+  97% { background: rgba(255, 255, 255, 0.6); }
+}
+
+/* Snow */
+.bg-snow {
+  background: linear-gradient(180deg, #8ba8c4 0%, #b3cddf 50%, #d8e5ee 100%);
+}
+
+.snow-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='2' fill='rgba(255,255,255,0.8)'/%3E%3Ccircle cx='120' cy='80' r='3' fill='rgba(255,255,255,0.6)'/%3E%3Ccircle cx='180' cy='30' r='1.5' fill='rgba(255,255,255,0.9)'/%3E%3Ccircle cx='60' cy='150' r='2.5' fill='rgba(255,255,255,0.7)'/%3E%3Ccircle cx='150' cy='180' r='1' fill='rgba(255,255,255,0.8)'/%3E%3C/svg%3E");
+  animation: snow-fall 10s linear infinite;
+}
+
+@keyframes snow-fall {
+  0% { background-position: 0 0; }
+  100% { background-position: 50px 200px; }
+}
+
+/* Night */
+.bg-night {
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+}
+
+.bg-night-cloudy {
+  background: linear-gradient(180deg, #1e293b 0%, #334155 50%, #475569 100%);
+}
+
+.night-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 4px), 
+    radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 3px), 
+    radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 4px);
+  background-size: 150px 150px, 100px 100px, 50px 50px;
+  background-position: 0 0, 40px 60px, 130px 20px;
+  opacity: 0.7;
+  animation: twinkle-bg 4s infinite alternate;
+}
+
+@keyframes twinkle-bg {
+  0% { opacity: 0.4; }
+  100% { opacity: 0.8; }
+}
