@@ -9,6 +9,7 @@ export default function WeatherBackground({ condition }) {
   const isRainy = cond.includes('rain') || cond.includes('drizzle') || cond.includes('shower');
   const isThunder = cond.includes('thunder') || cond.includes('storm') || cond.includes('lightning');
   const isSnow = cond.includes('snow');
+  const isAtmosphere = cond.includes('mist') || cond.includes('fog') || cond.includes('haze') || cond.includes('smoke') || cond.includes('dust');
 
   const currentHour = new Date().getHours();
   const isNight = currentHour < 6 || currentHour >= 18;
@@ -18,6 +19,7 @@ export default function WeatherBackground({ condition }) {
   if (isThunder) bgClass = 'bg-storm';
   else if (isRainy) bgClass = 'bg-rainy';
   else if (isSnow) bgClass = 'bg-snow';
+  else if (isAtmosphere) bgClass = isNight ? 'bg-night-cloudy' : 'bg-overcast';
   else if (isCloudy && cond.includes('overcast')) bgClass = isNight ? 'bg-night-cloudy' : 'bg-overcast';
   else if (isCloudy) bgClass = isNight ? 'bg-night-cloudy' : 'bg-cloudy';
 

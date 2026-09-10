@@ -36,17 +36,13 @@ git clone https://github.com/soyamshuswain-tech/weatherGPT.git
 cd weatherGPT
 ```
 
-### 2. Install dependencies
+### 2. Frontend Setup (React + Vite)
 ```bash
+cd Frontend
 npm install
-```
-
-### 3. Configure environment variables
-Copy `.env.example` to `.env`:
-```bash
 cp .env.example .env
 ```
-Fill in your API keys in `.env`:
+Fill in your API keys in `Frontend/.env`:
 ```env
 # OpenWeatherMap API Configuration
 VITE_OPENWEATHER_API_KEY=your_openweather_api_key_here
@@ -55,14 +51,23 @@ VITE_OPENWEATHER_API_KEY=your_openweather_api_key_here
 VITE_OLA_MAPS_API_KEY=your_ola_maps_api_key_here
 VITE_OLA_MAPS_CLIENT_ID=your_ola_maps_client_id_here
 VITE_OLA_MAPS_CLIENT_SECRET=your_ola_maps_client_secret_here
-```
 
-### 4. Run the development server
+# FastAPI Backend URL
+VITE_BACKEND_URL=http://localhost:8000
+```
+Run the frontend:
 ```bash
 npm run dev
 ```
 
-### 5. Build for production
+### 3. Backend Setup (FastAPI + PyTorch)
+```bash
+cd ../Backend
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn app:app --reload --port 8000
+```
 ```bash
 npm run build
 ```

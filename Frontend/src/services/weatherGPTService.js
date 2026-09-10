@@ -1,17 +1,30 @@
 export const sendMessageToGPT = async (message, context = {}) => {
-  const { language = 'en', lat, lng } = context;
+  const { language = 'en' } = context;
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
 
-  // Mock POST request to our future LLM backend
-  /*
-  const response = await fetch('/api/chat', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message, language, latitude: lat, longitude: lng })
-  });
-  return response.json();
-  */
+  // Try real FastAPI backend first
+  try {
+    const res = await fetch(`${backendUrl}/api/predict`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: message }),
+      signal: AbortSignal.timeout(4000)
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.response) {
+        return { 
+          reply: data.response,
+          suggestions: data.suggestions || [],
+          metrics: data.metrics || {}
+        };
+      }
+    }
+  } catch (_e) {
+    // Backend offline or timeout -> smoothly fallback to built-in intelligence
+  }
 
-  // Simulated AI delay
+  // Simulated AI delay fallback
   return new Promise((resolve) => {
     setTimeout(() => {
       let reply = "";

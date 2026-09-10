@@ -9,6 +9,7 @@ export default function Animated3DWeatherIcon({ condition }) {
   const isRainy = cond.includes('rain') || cond.includes('drizzle') || cond.includes('shower');
   const isThunder = cond.includes('thunder') || cond.includes('storm') || cond.includes('lightning');
   const isSnow = cond.includes('snow');
+  const isAtmosphere = cond.includes('mist') || cond.includes('fog') || cond.includes('haze') || cond.includes('smoke') || cond.includes('dust');
 
   const currentHour = new Date().getHours();
   const isNight = currentHour < 6 || currentHour >= 18;
@@ -62,8 +63,16 @@ export default function Animated3DWeatherIcon({ condition }) {
           </>
         )}
         
+        {/* Atmosphere (Mist, Fog, Haze) Elements */}
+        {isAtmosphere && !isCloudy && !isRainy && (
+          <>
+            <div className="cloud-3d" style={{ top: '25px', left: '10px', opacity: 0.75, filter: 'blur(1px)' }}></div>
+            <div className="cloud-3d" style={{ top: '45px', left: '-5px', opacity: 0.6, transform: 'scale(0.85)' }}></div>
+          </>
+        )}
+
         {/* Default fallback */}
-        {!isSunny && !isCloudy && !isRainy && !isThunder && !isSnow && (
+        {!isSunny && !isCloudy && !isRainy && !isThunder && !isSnow && !isAtmosphere && (
            <div className="cloud-3d" style={{ top: '30px', left: '20px', transform: 'translateZ(0px)' }}></div>
         )}
       </div>
